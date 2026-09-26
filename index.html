@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Notas para Vos</title>
+    <style>
+        /* Estilos generales orientados a celular */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbfb;
+            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        /* Encabezado fijo y estético */
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background: transparent;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            color: #d64550;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            color: #777;
+            font-size: 1rem;
+        }
+
+        /* Contenedor principal de las notas */
+        #contenedor-notas {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            max-width: 600px; /* Para que se vea bien si lo abre en PC */
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        /* Diseño de cada tarjetita de nota */
+        .nota-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 5px solid #ffb6c1; /* Borde de color decorativo */
+            transition: transform 0.2s ease;
+        }
+
+        .nota-card:active {
+            transform: scale(0.98);
+        }
+
+        .nota-fecha {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .nota-texto {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #4a4a4a;
+            margin: 0;
+            white-space: pre-wrap; /* Respeta los saltos de línea que pongas en el texto */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Para Vos ❤️</h1>
+        <p>Un rinconcito para guardar lo que siento.</p>
+    </header>
+
+    <div id="contenedor-notas">
+        <!-- Las notas se van a cargar acá automáticamente -->
+    </div>
+
+    <script>
+        /* 
+        ========================================================
+        ACÁ SE AGREGAN LAS NOTAS NUEVAS
+        ========================================================
+        Solo tenés que copiar la estructura de una nota y pegarla arriba 
+        o abajo para sumar una nueva. 
+        - Asegurate de mantener las comillas invertidas (`) alrededor del texto.
+        - Podés usar la etiqueta <br> si querés forzar un salto de línea.
+        */
+        
+        const misNotas = [
+            {
+                fecha: "26 de Septiembre, 2026",
+                texto: `Esta es la primera notita de este espacio. 
+Quiero usar este rinconcito para ir dejándote mensajes, recuerdos y cosas lindas para que puedas leerlas cuando quieras.`
+            },
+            {
+                fecha: "26 de Septiembre, 2026",
+                texto: `Hoy me acordé de cuando fuimos juntas por 1ra vez a los altos. 
+Sos increíble y me encantaria compartir mas viajes con vos.`
+            }
+            // Para agregar otra nota, poné una coma (,) después de la llave de cierre "}" de arriba, y pegá un nuevo bloque.
+        ];
+
+        /* ========================================================
+        LÓGICA QUE DIBUJA LAS NOTAS (NO HACE FALTA TOCAR ESTO)
+        ======================================================== */
+        const contenedor = document.getElementById('contenedor-notas');
+
+        misNotas.forEach(nota => {
+            // Crear la tarjeta
+            const card = document.createElement('div');
+            card.className = 'nota-card';
+
+            // Crear la fecha
+            const fechaEl = document.createElement('div');
+            fechaEl.className = 'nota-fecha';
+            fechaEl.innerText = nota.fecha;
+
+            // Crear el texto
+            const textoEl = document.createElement('p');
+            textoEl.className = 'nota-texto';
+            textoEl.innerText = nota.texto;
+
+            // Ensamblar
+            card.appendChild(fechaEl);
+            card.appendChild(textoEl);
+            contenedor.appendChild(card);
+        });
+    </script>
+</body>
+</html>
